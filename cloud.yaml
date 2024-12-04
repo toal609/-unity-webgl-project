@@ -37,7 +37,8 @@ steps:
       - 'us-central1'
       - '--allow-unauthenticated'
 
- options:
+options:
   logging: CLOUD_LOGGING_ONLY
   build:
-    logs_bucket: gs://unity-builds-1234
+    logs_bucket: gs://unity-builds-1234  # 새로 만든 버킷 경로
+  service_account: projects/nth-glider-443703-g9/serviceAccounts/total609@gmail.com
