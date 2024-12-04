@@ -1,4 +1,4 @@
-steps:
+ steps:
   # Unity WebGL 빌드
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -42,3 +42,4 @@ options:
   build:
     logs_bucket: gs://unity-builds-1234  # 새로 만든 버킷 경로
   service_account: projects/nth-glider-443703-g9/serviceAccounts/total609@gmail.com
+
