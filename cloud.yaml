@@ -38,7 +38,8 @@ steps:
       - '--allow-unauthenticated'
 
 options:
-  logging: NONE  # Cloud Logging을 사용하지 않음
+  logging: CLOUD_LOGGING_ONLY  # Cloud Logging을 활성화하지만 자동 로그 처리
   build:
-    logs_bucket: gs://unity-builds-1234  # 새로 만든 버킷 경로
+    default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET  # 자동 로그 버킷 설정
   service_account: projects/nth-glider-443703-g9/serviceAccounts/total609@gmail.com
+
