@@ -36,7 +36,8 @@ steps:
       - '--region'
       - 'us-central1'
       - '--allow-unauthenticated'
+
 options:
   logging: CLOUD_LOGGING_ONLY
-  logsBucket: 'gs://unity-builds-1234'
+  logsBucket: 'gs://unity-builds-1234'   # 여기에 로그 버킷 지정
   timeout: '3600s'
