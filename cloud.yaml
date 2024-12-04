@@ -38,8 +38,9 @@
       - '--allow-unauthenticated'
 
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: CLOUD_LOGGING_ONLY  # 유지
   build:
-    logs_bucket: gs://unity-builds-1234  # 새로 만든 버킷 경로
+    default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
   service_account: projects/nth-glider-443703-g9/serviceAccounts/total609@gmail.com
+
 
