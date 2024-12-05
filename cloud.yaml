@@ -1,4 +1,3 @@
-steps:
   # Unity WebGL 빌드
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -7,16 +6,17 @@ steps:
       - '-v'
       - '/workspace:/project'
       - 'game-ci/unity3d:2022.3.16f1-webgl'
-      - unity-editor
-      - -batchmode
-      - -nographics
-      - -quit
-      - -projectPath
-      - /project
-      - -executeMethod
-      - Builder.BuildWebGL
-      - -logFile
-      - /project/build.log
+      - 'unity-editor'
+      - '-batchmode'
+      - '-nographics'
+      - '-quit'
+      - '-projectPath'
+      - '/project'
+      - '-executeMethod'
+      - 'Builder.BuildWebGL'
+      - '-logFile'
+      - '/project/build.log'
+  
   # Storage에 업로드
   - name: 'gcr.io/cloud-builders/gsutil'
     args:
@@ -25,6 +25,7 @@ steps:
       - '-r'
       - 'builds/WebGL/*'
       - 'gs://nth-glider-443703-g9-unity-builds/'
+  
   # Cloud Run 배포
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -38,7 +39,5 @@ steps:
       - '--allow-unauthenticated'
 
 options:
-  logging: NONE  # Cloud Logging을 사용하지 않음
-  build:
-    logs_bucket: gs://unity-builds-1234  # 새로 만든 버킷 경로
-  service_account: projects/nth-glider-443703-g9/serviceAccounts/total609@gmail.com
+  logging: CLOUD_LOGGING_ONLY
+timeout: '3600s'
