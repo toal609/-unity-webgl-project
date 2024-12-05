@@ -7,17 +7,16 @@ steps:
       - '-v'
       - '/workspace:/project'
       - 'game-ci/unity3d:2022.3.16f1-webgl'
-      - 'unity-editor'
-      - '-batchmode'
-      - '-nographics'
-      - '-quit'
-      - '-projectPath'
-      - '/project'
-      - '-executeMethod'
-      - 'Builder.BuildWebGL'
-      - '-logFile'
-      - '/project/build.log'
-  
+      - unity-editor
+      - -batchmode
+      - -nographics
+      - -quit
+      - -projectPath
+      - /project
+      - -executeMethod
+      - Builder.BuildWebGL
+      - -logFile
+      - /project/build.log
   # Storage에 업로드
   - name: 'gcr.io/cloud-builders/gsutil'
     args:
@@ -26,7 +25,6 @@ steps:
       - '-r'
       - 'builds/WebGL/*'
       - 'gs://nth-glider-443703-g9-unity-builds/'
-
   # Cloud Run 배포
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -41,4 +39,6 @@ steps:
 
 options:
   logging: CLOUD_LOGGING_ONLY
-  timeout: '3600s'  # 빌드 시간 제한을 1시간으로 설정
+
+# timeout은 최상위 항목에 배치
+timeout: '3600s'
